@@ -8,8 +8,9 @@ def index(request):
 
 
 def retrieve_blog(request, blog_id):
-    blog = Blog.objects.filter(id=blog_id)
+    blog = Blog.objects.filter(pk=blog_id)[0]
+    print(blog.content)
     context = {
         "blog": blog
     }
-    return render(request, 'polls/index.html', context)
+    return render(request, 'blogs/blog.html', context)
