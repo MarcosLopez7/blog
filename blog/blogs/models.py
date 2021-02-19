@@ -7,6 +7,7 @@ class Blog(models.Model):
     """
     user = models.CharField(max_length=50, default="Usuario@test.com")
     title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='static/img/')
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
