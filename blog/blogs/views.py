@@ -9,7 +9,6 @@ def index(request):
 
 def retrieve_blog(request, blog_id):
     blog = Blog.objects.filter(pk=blog_id)[0]
-    print(str(blog.image))
     context = {
         "blog": blog,
         "image": str(blog.image)[7:]
