@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from .models import Blog
@@ -8,9 +8,9 @@ def index(request):
 
 
 def retrieve_blog(request, blog_id):
-    blog = Blog.objects.filter(pk=blog_id)[0]
+    blog = get_object_or_404(Blog, pk=blog_id)
     context = {
-        "blog": blog,
-        "image": str(blog.image)[7:]
+        "blog": blog
     }
+    
     return render(request, 'blogs/blog.html', context)
