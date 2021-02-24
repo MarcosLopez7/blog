@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     path('blogs/', include(('blogs.urls', 'blogs'), namespace='blogs')),
+    path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('unauthorized/', views.unauthorized, name='unauthorized'),
     path('', views.index, name='index')
