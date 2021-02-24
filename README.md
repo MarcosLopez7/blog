@@ -1,6 +1,6 @@
-# blog
+# Blog
 
-Repositorio de Blog que está desarrollandose en [stream](https://www.twitch.tv/pylord_) 
+Dearrollo de un blog a través de Django, todo el proceso de desarrollo se está llevando acabo durante los directos de este [canal](https://www.twitch.tv/pylord_) 
 
 ### Como instalar 
 
