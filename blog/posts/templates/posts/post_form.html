@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Post{% endblock %}
+
+{% block content %}
+    <h1>Postea aquí</h1>
+    {{ form.media }}
+    {{ form.as_p }}
+{% endblock %}

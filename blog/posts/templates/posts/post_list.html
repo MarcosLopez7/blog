@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Post List{% endblock %}
+
+{% block content %}
+    <h1>Post List</h1>
+    
+    <div class="list-group">
+        {% for post in posts %}
+            <a href="{% url 'posts:get_post' post.pk %}" class="list-group-item list-group-item-action">{{ post.title }}</a>
+            <!-- <span class="badge badge-primary badge-pill">14</span> -->
+        {% endfor %}
+    </div>
+
+{% endblock %}
