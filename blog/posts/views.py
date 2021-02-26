@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse
 
 from .models import Post
@@ -10,7 +10,17 @@ def index(request):
 
 def add_post(request):
     if request.user.is_authenticated:
-        form = PostForm()
+        if request.method == 'POST':
+            form = PostForm(request.POST, request.FILES)
+
+            if form.is_valid():
+                post_instance = form.save(commit=False)
+                post_instance.user = request.user
+                post_instance.save()
+
+                return redirect(reverse('posts:list'))
+        else:
+            form = PostForm()
 
         context = {
             'form': form 
