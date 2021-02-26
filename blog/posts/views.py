@@ -18,7 +18,7 @@ def add_post(request):
                 post_instance.user = request.user
                 post_instance.save()
 
-                return redirect(reverse('posts:list'))
+                return redirect(reverse('posts:get', args=[post_instance.pk]))
         else:
             form = PostForm()
 
