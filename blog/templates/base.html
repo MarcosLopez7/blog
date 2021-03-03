@@ -6,31 +6,46 @@
         <link href="{% static 'css/main.css' %}" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Blog</a>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <!-- <span class="sr-only">(current)</span> -->
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                  </li>
                   {% if user.is_authenticated %}
-                    <li class="nav-item">
+                    <li class="nav-item active">
                       <a class="nav-link" href="{% url 'posts:list' %}">My posts</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                       <a class="nav-link" href="{% url 'posts:add' %}">Add post</a>
                     </li>
                   {% else %}
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Sign Up</a>
+                    
+                  {% endif %}
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Explorar</a>
+                  </li>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </ul>
+
+                <ul class="navbar-nav">
+                  {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Log out</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Sign In</a>
-                    </li>
+                  {% else %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Sign Up</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Sign In</a>
+                  </li>
                   {% endif %}
                 </ul>
               </div>
