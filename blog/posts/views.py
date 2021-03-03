@@ -45,6 +45,7 @@ def get_posts(request):
         posts = Post.objects.filter(user=request.user)
 
         context = {
+            'list_title': 'My post list',
             'posts': posts 
         }
 

@@ -1,1 +1,21 @@
 /* CSS principal */
+.content-margin {
+    margin-top: 80px;
+}
+
+.post-link a { 
+    color: inherit; 
+}
+
+.post-link a:hover {
+    text-decoration: none;
+}
+
+.django-ckeditor-widget {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#cke_id_content {
+    width: 100% !important;
+}

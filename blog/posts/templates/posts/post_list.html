@@ -1,16 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Post List{% endblock %}
+{% block title %}{{ list_title }}{% endblock %}
 
 {% block content %}
-    <h1>Post List</h1>
+    <h1>{{ list_title }}</h1>
     
-    <div class="list-group">
+    <ul class="list-group">
         {% for post in posts %}
-            <a href="{% url 'posts:get' post.pk %}" class="list-group-item list-group-item-action">{{ post.title }}</a>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="post-link">
+                    <a href="{% url 'posts:get' post.pk %}" class="post-link">{{ post.title }}</a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!-- <span class="badge badge-primary badge-pill">
+
+                </span> -->
+            </li>
+            <!-- <a href="{% url 'posts:get' post.pk %}" class="list-group-item list-group-item-action"></a> -->
             <!-- <span class="badge badge-primary badge-pill">14</span> -->
         {% endfor %}
-    </div>
+    </ul>
 
 {% endblock %}
