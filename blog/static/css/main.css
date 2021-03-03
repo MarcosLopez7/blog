@@ -1,16 +1,44 @@
 /* CSS principal */
+
+/* Main */
 .content-margin {
     margin-top: 80px;
 }
 
+
+/* Utilidad especìficas */
 .post-link a { 
     color: inherit; 
 }
 
 .post-link a:hover {
     text-decoration: none;
+    color: #0056b3;
 }
 
+.post-container {
+    width: 800px;
+    margin: auto;
+}
+
+.post-container img {
+    width: 100%;
+}
+
+.post-header {
+    font-size: 3.3rem;
+}
+
+.post-info {
+    font-size: smaller;
+    color: #888;
+    margin-top: 10px;
+}
+/* .post-content {
+    width: 800px;
+} */
+
+/* Django CKEditor CSS */
 .django-ckeditor-widget {
     margin-top: 20px;
     width: 100%;
