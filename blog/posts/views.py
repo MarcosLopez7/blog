@@ -64,6 +64,20 @@ def get_post(request, post_id):
     return render(request, 'posts/post.html', context)
 
 
+def delete_post(request, post_id):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=post_id)
+
+        if post.user == request.user and request.method == 'POST':
+            post.delete()
+
+            return redirect(reverse('posts:list'))
+        else:
+            return redirect('/unauthorized')
+    else:
+        return redirect('/unauthorized')
+
+
 def get_posts(request):
     if request.user.is_authenticated:
         posts = Post.objects.filter(user=request.user)
