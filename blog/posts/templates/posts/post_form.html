@@ -5,7 +5,7 @@
 
 {% block content %}
     <h1>Postea aquí</h1>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="was-validated">
         {% csrf_token %}
         {{ form.media }}
         {% for field in form %}
@@ -18,7 +18,11 @@
             {% else %}
                 <div class="form-group">
                     {{ field }}
-                    {{ field.errors }}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
                 </div>
             {% endif %}
         {% endfor %}
