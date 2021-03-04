@@ -133,3 +133,5 @@ blog/static/img/
 
 # VS Code settings
 .vscode/
+sendgrid.env
+*.env
