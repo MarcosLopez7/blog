@@ -12,13 +12,17 @@
                 <div class="post-link">
                     <a href="{% url 'posts:get' post.pk %}" class="post-link">{{ post.title }}</a>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
+                <div class="post-crud-buttons">
+                    <form action="{% url 'posts:edit' post.pk %}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>        
+                    </form>
+                    <form action="/">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>    
+                    </form>
                 </div>
                 <!-- <span class="badge badge-primary badge-pill">
 

@@ -16,6 +16,16 @@
     color: #0056b3;
 }
 
+.post-crud-buttons {
+    display: inherit;
+}
+
+.post-crud-buttons form {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin: 0 2.5px;
+}
+
 .post-container {
     width: 800px;
     margin: auto;

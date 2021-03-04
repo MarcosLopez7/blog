@@ -7,7 +7,6 @@ from .forms import PostForm
 def index(request):
     return HttpResponse("Hola mundo! estàs entrando en los blogs")
 
-
 def add_post(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -30,6 +29,31 @@ def add_post(request):
     else:
         return redirect('/unauthorized')
 
+def edit_post(request, post_id):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=post_id)
+
+        if post.user == request.user:
+            form = PostForm(instance=post)
+
+            if request.method == 'POST':
+                form = PostForm(request.POST, request.FILES, instance=post)
+
+                if form.is_valid():
+                    post_instance = form.save(commit=False)
+                    post_instance.save()
+
+                    return redirect(reverse('posts:get', args=[post_instance.pk]))
+
+            context = {
+                'form': form 
+            }
+
+            return render(request, 'posts/post_form.html', context)
+        else:
+            return redirect('/unauthorized')
+    else:
+        return redirect('/unauthorized')
 
 def get_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
