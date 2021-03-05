@@ -20,10 +20,3 @@
         <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    
-    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
-</form>
