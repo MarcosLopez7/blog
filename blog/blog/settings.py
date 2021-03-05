@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'ckeditor'
 ]
 
+AUTHENTICATION_BACKENDS = ['blog.auth_backend.EmailBackend']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

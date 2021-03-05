@@ -10,11 +10,31 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 from .tokens import account_activation_token
 
 
-# Create your views here.
+def sign_in(request):
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            email = request.POST['email']
+            password = request.POST['password']
+            form = SignInForm(request.POST)
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+        else:
+            form = SignInForm()
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'users/sign_in.html', context)
+    else:
+        return redirect('/')
+
 def sign_up(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
