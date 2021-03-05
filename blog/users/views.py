@@ -1,9 +1,17 @@
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.contrib.auth import login, authenticate
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from django.contrib.auth import login, authenticate
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from .forms import SignUpForm
+from .tokens import account_activation_token
 
 
 # Create your views here.
@@ -14,21 +22,26 @@ def sign_up(request):
 
             if form.is_valid():
                 user = form.save(commit=False)
+                user.is_active = False
                 user.save()
-                raw_password = form.cleaned_data.get('password1')
-                user = authenticate(username=user.username, password=raw_password)
+                url_site = get_current_site(request)
+                uid = urlsafe_base64_encode(force_bytes(user.pk))
+                token = account_activation_token.make_token(user),
+                print(uid)
+                print(token)
+                message = render_to_string('users/email_validation.html', {
+                            'user': user,
+                            'domain': url_site,
+                            'uid': uid,
+                            'token': token[0],
+                        })
                 send_mail(
                     'Gracias por registrate al blog', 
-                    """
-                    <h1>Gracias por registrarte</h1>
-                    <p>Esperemos que los posts de este blog sean de tu agrado</p>
-                    """,
+                    message,
                     settings.EMAIL_SENDER,
                     [user.email],
                     fail_silently=False
                     )
-
-                login(request, user)
 
                 return redirect(reverse('users:successful'))
         else:
@@ -41,6 +54,20 @@ def sign_up(request):
         return render(request, 'users/sign_up.html', context)
     else:
         return redirect('/')
+
+def activate(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return render(request, 'users/user_activated.html')
+    else:
+        return HttpResponse('¡Lo sentimos, el link es inválido!')
 
 
 def successful_registration(request):

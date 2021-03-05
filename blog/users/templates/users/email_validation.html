@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+<h1>Gracias por registrarte</h1>
+<p>Esperemos que los posts de este blog sean de tu agrado</p>
+<p>Por favor da click en el siguiente enlace para que podamos validar tu correo</p>
+
+http://{{ domain }}{% url 'users:activate' uid token %}
+
+<p>Gracias</p>
+{% endautoescape %}
