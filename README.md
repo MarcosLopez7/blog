@@ -17,6 +17,24 @@ Para instalar el código en tu máquina local realiza los siguientes pasos:
 9. Crea la base de datos de SQLite a través de las migraciones con el siguiente comando `python manage.py migrate`
 10. Si todo saliò bien, corre el servidor de desarrollo de Django con `python manage.py runserver`, accede al navegador con localhost:8000 y deberìas ver la app corriendo sin problema :)
 
+### Variables de entorno
+
+En los commits más recientes, se implementaron variables de entorno que son usadas para ocultar strings que contienen contraseñas o llaves de acceso a API's externos con el fin de que no se expongan en el repositorio en texto plano y mantener segura nuestra app.
+
+Para exportar una variable de entorno y que ésta sea usada en la aplicación corre el siguiente comando en la misma terminal donde corres `python manage.py runserver`:
+
+- Para linux o MacOS: `export MI_VARIABLE_DE_ENTORNO='valor de mi variable`
+- Para Windows: `setx MI_VARIABLE_DE_ENTORNO "valor de mi variable"`
+
+Luego cuando quieras usar la viable dentro del código:
+
+- Importas la biblioteca de os `import os`
+- Usa el método os.getenv() para obtener el valor de la variable `MI_VARIABLE_DE_PYTHON = os.getenv('MI_VARIABLE_DE_ENTORNO')`
+
+###### Nota
+
+Probablemente tengas que exportar las variables cada vez que inicies una nueva terminal, para que estás variables queden guardadas para todas las nuevas terminales que se inicialicen, en linux o MacOS puedes agregar los comandos para exportar las variables dentro de `~/.bashrc`. El siguiente link es una explicación de como funciona el archivo [~/.bashrc](https://www.zeppelinux.es/descripcion-y-uso-de-los-archivos-bashrc-y-etc-bashrc/) 
+
 ### Crea un superusario para el admin
 
 Para usar el admin crea tu super usuario con el comando `python manage.py createsuperuser` llena los datos que te piden y accede al sitio del admin desde localhost:8000/admin

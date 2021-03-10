@@ -107,6 +107,8 @@ celerybeat.pid
 env/
 venv/
 ENV/
+sendgrid.env
+*.env
 env.bak/
 venv.bak/
 
@@ -133,5 +135,5 @@ blog/static/img/
 
 # VS Code settings
 .vscode/
-sendgrid.env
-*.env
+*.json
+
