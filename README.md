@@ -18,7 +18,7 @@ Para instalar el código en tu máquina local realiza los siguientes pasos:
 10. Crea la base de datos de SQLite a través de las migraciones con el siguiente comando `python manage.py migrate`
 11. Si todo salió bien, corre el servidor de desarrollo de Django con `python manage.py runserver`, accede al navegador con localhost:8000 y deberìas ver la app corriendo sin problema :)
 
-Para la funcionalidad completa de la aplicación se necesita configurar el envío automático de correo electrónico, puedes revisar esta [sección para más información](https://github.com/MarcosLopez7/blog#configuracion-del-envio-automatico-de-correo-electrónico)  
+Para la funcionalidad completa de la aplicación se necesita configurar el envío automático de correo electrónico, puedes revisar esta [sección para más información](https://github.com/MarcosLopez7/blog#configuraci%C3%B3n-del-envi%C3%B3-autom%C3%A1tico-de-correo-electr%C3%B3nico)  
 
 ### Crea un superusario para el admin
 
