@@ -8,7 +8,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 
 from .forms import SignUpForm, SignInForm
 from .tokens import account_activation_token
@@ -34,6 +34,13 @@ def sign_in(request):
         return render(request, 'users/sign_in.html', context)
     else:
         return redirect('/')
+
+def log_out(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('/')
+    else:
+        return redirect(reverse('user:sign-in'))
 
 def sign_up(request):
     if not request.user.is_authenticated:
