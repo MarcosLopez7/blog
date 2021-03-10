@@ -13,9 +13,16 @@ Para instalar el código en tu máquina local realiza los siguientes pasos:
 5. Inicializa el entorno de python `python -m venv .`
 6. Activa el entorno de python en Linux o mac corre: `source bin/activate` en Windows: `Scripts\activate.bat`
 7. Instala las dependencias en requirements.txt `pip install -r requirements.txt` 
-8. Ingresa al directorio principal del proyecto `cd blog`
-9. Crea la base de datos de SQLite a través de las migraciones con el siguiente comando `python manage.py migrate`
-10. Si todo saliò bien, corre el servidor de desarrollo de Django con `python manage.py runserver`, accede al navegador con localhost:8000 y deberìas ver la app corriendo sin problema :)
+8. Exporta una variable de entorno con nombre `DJANGO_SECRET_KEY`, el valor de está variable debe ser semejante a una contraseña fuerte, ejemplo `6azuu$i$mk%-i92g*thfo#@j+u&(3hnl%a+68ov+lp6vifbw-j` (no uses este valor), puedes utilizar un generador de contraseñas aleatoreos para generar un valor semejante, para exportar la variable en Linux o MacOS usa el comando `export DJANGO_SECRET_KEY='valor para esta variable'` en Windows `setx DJANGO_SECRET_KEY "valor para esta variable"`, para más información sobre las variables de entorno checa [la sección adentro de este README](https://github.com/MarcosLopez7/blog#variables-de-entorno)
+9. Ingresa al directorio principal del proyecto `cd blog`
+10. Crea la base de datos de SQLite a través de las migraciones con el siguiente comando `python manage.py migrate`
+11. Si todo salió bien, corre el servidor de desarrollo de Django con `python manage.py runserver`, accede al navegador con localhost:8000 y deberìas ver la app corriendo sin problema :)
+
+Para la funcionalidad completa de la aplicación se necesita configurar el envío automático de correo electrónico, puedes revisar esta [sección para más información](https://github.com/MarcosLopez7/blog#configuracion-del-envio-automatico-de-correo-electrónico)  
+
+### Crea un superusario para el admin
+
+Para usar el admin crea tu super usuario con el comando `python manage.py createsuperuser` llena los datos que te piden y accede al sitio del admin desde localhost:8000/admin
 
 ### Variables de entorno
 
@@ -59,6 +66,25 @@ Para activar el archivo .env abre en la misma terminal donde se ejecuta `python 
 
 En windows para el archivo .bat en la misma terminal donde se ejecuta `python manage.py runserver` ejecuta el comando `.\nombre_de_mi_archivo.bat`
 
-### Crea un superusario para el admin
+### Configuración del envió automático de correo electrónico
 
-Para usar el admin crea tu super usuario con el comando `python manage.py createsuperuser` llena los datos que te piden y accede al sitio del admin desde localhost:8000/admin
+Para activar la total funcionalidad de la aplicación hay que configurar algunos settings necesarios. Por defecto los settings para el correo están de la siguiente manera
+
+    # Email Settings
+    SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+    EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_SENDER = 'pylord_@tutanota.com'
+
+La configuración anterior está para conectarse con el servicio de [SendGrid](https://sendgrid.com/), para usar está configuración, debes crear una cuenta en este servicio (la cuenta puede ser gratuita), a través de esta cuenta debes generar una API key donde también puedas incluir la dirección de correo electrónico que deseas usar como dirección de origen para todos los correos que se envíen 
+
+Una vez generada el API key debes exportar una variable de entorno con el nombre de SENDGRID_API_KEY con el valor del API key generado por sendgrid, consulta la sección de [variables de entorno](https://github.com/MarcosLopez7/blog#variables-de-entorno) para más informaicón
+
+###### nota
+
+Si quieres usar otro servicio aparte de SendGrid como gmail, mailgun, etc. Puedes hacerlo pero la configuración de estos servicios en el código están fuera de alcance de está documentación
