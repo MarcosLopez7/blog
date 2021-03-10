@@ -1,7 +1,35 @@
 from django import forms
-
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+class ResetPasswordForm(forms.Form):
+    email = forms.CharField(
+                max_length=200, 
+                widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
+    )
+
+    def clean_email(self):
+        """
+        Validar que el email enviado esté registrado
+        """
+        data = self.cleaned_data['email']
+        try:
+            User.objects.get(email=data)
+        except:
+            raise ValidationError("Lo siento el email no está registrado")
+
+        return data
+
+
+class ResetNewPassword(forms.Form):
+    password1 = forms.CharField(
+                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+    )
+    password2 = forms.CharField(
+                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'})
+    )
 
 
 class SignInForm(forms.Form):

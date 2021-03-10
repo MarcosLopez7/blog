@@ -1,3 +1,6 @@
+import string
+import random
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
@@ -10,7 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, logout
 
-from .forms import SignUpForm, SignInForm
+from .forms import SignUpForm, SignInForm, ResetPasswordForm
 from .tokens import account_activation_token
 
 
@@ -35,6 +38,56 @@ def sign_in(request):
     else:
         return redirect('/')
 
+def reset_password(request):
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ResetPasswordForm(request.POST)
+
+            if form.is_valid():
+                email = form.cleaned_data['email']
+                user = User.objects.get(email=email)
+                """
+                Gracias no1crate por tu aportaciòn a estas líneas de código
+                """
+                caracteres = string.ascii_letters + string.digits
+                password = "".join(random.choices(caracteres, k=20))
+                title = 'Cambio de contraseña'
+                content = """
+                    Dale click al siguiente link para que puedas cambiar tu contraseña
+                """
+                user.set_password(password)
+                user.save()
+                url_site = get_current_site(request)
+                message = render_to_string('users/email_validation.html', {
+                            'user': user,
+                            'domain': url_site,
+                            'uid': None,
+                            'token': None,
+                            'title': title,
+                            'content': content,
+                            'password': password
+                        })
+                send_mail(
+                    'Cambio de contraseña', 
+                    message,
+                    settings.EMAIL_SENDER,
+                    [email],
+                    fail_silently=False
+                    )
+
+            return redirect(reverse('users:successful'))
+        else:
+            form = ResetPasswordForm()
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'users/reset_password.html', context)
+
+    else:
+        return redirect('/')
+
 def log_out(request):
     if request.user.is_authenticated:
         logout(request)
@@ -51,16 +104,22 @@ def sign_up(request):
                 user = form.save(commit=False)
                 user.is_active = False
                 user.save()
+                title = 'Gracias por registrarte'
+                content = """
+                    Esperemos que los posts de este blog sean de tu agrado.\n\n
+                    Por favor da click en el siguiente enlace para que podamos validar tu correo
+                """
                 url_site = get_current_site(request)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
                 token = account_activation_token.make_token(user),
-                print(uid)
-                print(token)
                 message = render_to_string('users/email_validation.html', {
                             'user': user,
                             'domain': url_site,
                             'uid': uid,
                             'token': token[0],
+                            'title': title,
+                            'content': content,
+                            'password': None
                         })
                 send_mail(
                     'Gracias por registrate al blog', 
@@ -95,7 +154,6 @@ def activate(request, uidb64, token):
         return render(request, 'users/user_activated.html')
     else:
         return HttpResponse('¡Lo sentimos, el link es inválido!')
-
 
 def successful_registration(request):
     return render(request, 'users/successful_registration.html')
