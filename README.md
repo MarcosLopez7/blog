@@ -88,3 +88,7 @@ Una vez generada el API key debes exportar una variable de entorno con el nombre
 ###### nota
 
 Si quieres usar otro servicio aparte de SendGrid como gmail, mailgun, etc. Puedes hacerlo pero la configuración de estos servicios en el código están fuera de alcance de está documentación
+
+### Issues (Reporte de bugs)
+
+Si ves un bug en el código o la documentación no está explicando bein un tema, por favor, reportalo en la sección de [Issues](https://github.com/MarcosLopez7/blog/issues) dentro del repositorio 
