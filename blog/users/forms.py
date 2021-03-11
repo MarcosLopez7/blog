@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 
 
@@ -18,18 +19,43 @@ class ResetPasswordForm(forms.Form):
         try:
             User.objects.get(email=data)
         except:
-            raise ValidationError("Lo siento el email no está registrado")
+            raise ValidationError("Lo sentimos, el email no está registrado")
 
         return data
 
 
-class ResetNewPassword(forms.Form):
-    password1 = forms.CharField(
-                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(
+                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña actual'})
     )
-    password2 = forms.CharField(
-                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'})
+    new_password1 = forms.CharField(
+                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nueva contraseña'})
     )
+    new_password2 = forms.CharField(
+                widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmar nueva contraseña'})
+    )
+
+    def clean_new_password1(self):
+        """
+        Validar que la contraseña coincida con el primer password
+        """
+        password_1 = self.cleaned_data['new_password1']
+
+        validate_password(password_1)
+
+        return password_1
+
+    def clean_new_password2(self):
+        """
+        Validar que la contraseña coincida con el primer password
+        """
+        password_1 = self.data['new_password1']
+        password_2 = self.cleaned_data['new_password2']
+
+        if password_2 != password_1:
+            raise ValidationError("Lo sentimos, las contraseñas no coinciden")
+
+        return password_2
 
 
 class SignInForm(forms.Form):

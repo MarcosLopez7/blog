@@ -37,6 +37,9 @@
                 <ul class="navbar-nav">
                   {% if user.is_authenticated %}
                     <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'users:change-password' %}">Cambiar contraseña</a>
+                    </li>
+                    <li class="nav-item active">
                       <a class="nav-link" href="{% url 'users:log-out' %}">Log out</a>
                     </li>
                   {% else %}

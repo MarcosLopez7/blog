@@ -13,7 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, logout
 
-from .forms import SignUpForm, SignInForm, ResetPasswordForm
+from .forms import SignUpForm, SignInForm, ResetPasswordForm, ChangePasswordForm
 from .tokens import account_activation_token
 
 
@@ -37,6 +37,33 @@ def sign_in(request):
         return render(request, 'users/sign_in.html', context)
     else:
         return redirect('/')
+
+def change_password(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ChangePasswordForm(request.POST)
+
+            if form.is_valid():
+                old_password = form.cleaned_data['old_password']
+                user = authenticate(request, username=request.user.email, password=old_password)
+
+                if user is not None:
+                    new_password = form.cleaned_data['new_password2']
+                    user.set_password(new_password)
+                    user.save()
+                    login(request, user)
+                    
+                    return redirect(reverse('users:successful'))
+        else:
+            form = ChangePasswordForm()
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'users/change_password.html', context)
+    else:
+        redirect('/unauthorized')
 
 def reset_password(request):
     if not request.user.is_authenticated:
