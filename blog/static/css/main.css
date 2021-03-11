@@ -5,6 +5,49 @@
     margin-top: 80px;
 }
 
+/* Navbar */
+nav {
+    background-color: #3776ab;
+}
+
+.nav-link {
+    color: #ffd343 !important;
+}
+
+.navbar-brand {
+    color: #ffd343 !important;
+}
+
+.nav-form {
+    margin-left: 15px;
+}
+
+.search-button {
+    color: #ffd343;
+    border-color: #ffd343;
+}
+
+.search-button:hover {
+    color: #3776ab;
+    background-color: #ffd343;
+    border-color: #ffd343;
+}
+
+/* Quitar links del card */
+.card a {
+    color: inherit; 
+}
+
+.card a:hover {
+    text-decoration: none;
+}
+
+/* Style para la lista de post del index */
+.post-list-content {
+    width: 800px;
+    margin: 0 auto;
+}
+
 
 /* Utilidad especìficas */
 .post-link a { 
@@ -44,9 +87,18 @@
     color: #888;
     margin-top: 10px;
 }
-/* .post-content {
-    width: 800px;
-} */
+
+/* FOOTER */
+footer {
+    text-align: center;
+    background-color: #265378;
+    color: #7399B9;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 
 /* Django CKEditor CSS */
 .django-ckeditor-widget {

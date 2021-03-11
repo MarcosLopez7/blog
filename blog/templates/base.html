@@ -1,12 +1,14 @@
 {% load static %}
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Blogs de pylord{% endblock %}</title>
         <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/main.css' %}" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="/">Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,9 +30,9 @@
                   <li class="nav-item active">
                     <a class="nav-link" href="#">Explorar</a>
                   </li>
-                  <form class="form-inline my-2 my-lg-0">
+                  <form class="form-inline my-2 my-lg-0 nav-form">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn search-button my-2 my-sm-0" type="submit">Search</button>
                   </form>
                 </ul>
 
@@ -63,5 +65,9 @@
         <script src="{% static 'js/bootstrap/jquery.min.js' %}"></script>
         <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/app.js' %}"></script>
+
+        <footer>
+          <div>© 2021 by Marcos López</div>
+        </footer>
     </body>
 </html>
