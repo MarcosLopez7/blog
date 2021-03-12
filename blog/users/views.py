@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
@@ -26,6 +27,7 @@ def sign_in(request):
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
+                messages.info(request, 'Has iniciado sesión')
                 return redirect("/")
         else:
             form = SignInForm()
@@ -118,6 +120,7 @@ def reset_password(request):
 def log_out(request):
     if request.user.is_authenticated:
         logout(request)
+        messages.info(request, 'Has cerrado sesión')
         return redirect('/')
     else:
         return redirect(reverse('user:sign-in'))

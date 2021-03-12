@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">{{ title }}</h4>
+        <p>{{ content }}</p>
+        <hr>
+        <p class="mb-0">{{ footer }}</p>
+    </div>
+    
+{% endblock %}

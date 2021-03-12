@@ -33,6 +33,22 @@ nav {
     border-color: #ffd343;
 }
 
+/* CSS Para las alertas o mensajes */
+
+.messages {
+    top: 48px;
+    position: fixed;
+    right: 1vw;
+    z-index: 10000;
+    width: 250px;
+}
+
+.alert-info {
+    color: #265378;
+    background-color: #99CDF7;
+    border-color: #99CDF7;
+}
+
 /* Quitar links del card */
 .card a {
     color: inherit; 
