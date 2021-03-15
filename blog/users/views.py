@@ -20,6 +20,8 @@ from .tokens import account_activation_token
 
 def sign_in(request):
     if not request.user.is_authenticated:
+        error_message = None
+
         if request.method == 'POST':
             email = request.POST['email']
             password = request.POST['password']
@@ -29,11 +31,14 @@ def sign_in(request):
                 login(request, user)
                 messages.info(request, 'Has iniciado sesión')
                 return redirect("/")
+            else:
+                error_message = "Error al Iniciar Sesión: El email o la constraseña están incorrectas, por favor, verifica otra vez e intenta de nuevo"
         else:
             form = SignInForm()
 
         context = {
-            'form': form
+            'form': form,
+            'error_message': error_message
         }
 
         return render(request, 'users/sign_in.html', context)

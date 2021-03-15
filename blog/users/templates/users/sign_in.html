@@ -5,6 +5,13 @@
 
 {% block content %}
     <h1>Login</h1>
+
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+
     <form method="post" enctype="multipart/form-data" class="was-validated">
         {% csrf_token %}
         {% for field in form %}
