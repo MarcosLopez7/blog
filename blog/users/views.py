@@ -54,8 +54,8 @@ def change_password(request):
                     user.set_password(new_password)
                     user.save()
                     login(request, user)
-                    
-                    return redirect(reverse('users:successful'))
+                    messages.info(request, 'La contraseña ha sido modificada exitosamente')
+                    return redirect("/")
         else:
             form = ChangePasswordForm()
 
@@ -104,7 +104,7 @@ def reset_password(request):
                     fail_silently=False
                     )
 
-            return redirect(reverse('users:successful'))
+            return redirect(reverse('users:notification', args=['password-resetted']))
         else:
             form = ResetPasswordForm()
 
@@ -159,7 +159,7 @@ def sign_up(request):
                     fail_silently=False
                     )
 
-                return redirect(reverse('users:successful'))
+                return redirect(reverse('users:notification', args=['registration']))
         else:
             form = SignUpForm()
 
@@ -181,9 +181,47 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return render(request, 'users/user_activated.html')
+
+        return redirect(reverse('users:notification', args=['activation']))
     else:
         return HttpResponse('¡Lo sentimos, el link es inválido!')
 
-def successful_registration(request):
-    return render(request, 'users/successful_registration.html')
+def notification_view(request, message):
+
+    if message == 'registration':
+        context = {
+            'title': '¡Gracias por registrarte!',
+            'content': """
+                Te hemos enviado un correo electrónico para confirmar tu emial, 
+                por favor, checa tu buzón de spam porque es probable que se encuentre ahí
+            """,
+            'footer': 'Muchas gracias',
+            'message_type': 'success'
+        }
+    elif message == 'activation':
+        context = {
+            'title': '¡Correo Electrónico verificado!',
+            'content': 'Has completado tu proceso de registro, puedes escribir y publicar en nuestros posts',
+            'footer': 'Inicia Sesión para que uses la app',
+            'message_type': 'success'
+        }
+    elif message == 'password-resetted':
+        context = {
+            'title': '¡Hemos cambiado tu contraseña!',
+            'content': """
+                Te hemos enviado un correo electrónico con la nueva contraseña que hemos generado por ti
+            """,
+            'footer': 'Por favor inicia sesión y cambia tu contraseña lo antes posible',
+            'message_type': 'success'
+        }
+    else:
+        context = {
+            'title': '¡Uh Oh! Algo salió mal',
+            'content': """
+                No estamos seguros que pasó aquí
+            """,
+            'footer': 'Regresa al blog para no regresar aquí',
+            'message_type': 'danger'
+        }
+
+    return render(request, 'users/user_message.html', context)
