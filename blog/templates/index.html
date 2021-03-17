@@ -4,6 +4,13 @@
 {% block content %}
     <h1>Bienvenidos a los blogs de Pylord</h1>
 
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Uso de la página de test</h4>
+        <p>Por favor usa el sitio de prueba de manera adecuada, si publicas contenido que afecten a otros como discriminación, racismo, discurso de odio o contenico pornográfico, serás baneado permanentemente tanto de este sitio de prueba como el de producción</p>
+        <hr>
+        <p class="mb-0">Consulta los <a href="{% url 'terms-condition' %}">términos y condiciones</a> para más información</p>
+    </div>
+
     <div class="post-list-content mt-5">
         {% for post in posts %}
             <div class="card mb-3">

@@ -84,7 +84,11 @@
         <script src="{% static 'js/app.js' %}"></script>
 
         <footer>
-          <div>© 2021 by Marcos López</div>
+          <div>
+            © 2021 by Marcos López 
+            <a href="{% url 'terms-condition' %}">Términos y condiciones</a>
+            <a href="{% url 'privacy' %}">Aviso de privacidad</a>
+          </div>
         </footer>
     </body>
 </html>

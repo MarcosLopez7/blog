@@ -23,5 +23,7 @@ urlpatterns = [
     path('users/', include(('users.urls', 'users'), namespace='users')),
     path('admin/', admin.site.urls),
     path('unauthorized/', views.unauthorized, name='unauthorized'),
+    path('terms-condition', views.terms_condition, name='terms-condition'),
+    path('privacy', views.privacy, name='privacy'),
     path('', views.index, name='index')
 ]

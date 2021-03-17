@@ -12,5 +12,11 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+def terms_condition(request):
+    return render(request, 'terms_condition.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
 def unauthorized(request):
     return render(request, 'unauthorized.html')
