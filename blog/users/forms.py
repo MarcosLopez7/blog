@@ -92,6 +92,16 @@ class SignUpForm(UserCreationForm):
                 widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'})
     )
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+
+        users = User.objects.filter(email=email)
+
+        if len(users) > 0:
+            raise ValidationError("El correo electrónico proporcionado ya ha sido reegistrado, por favor ingresa otro")
+
+        return email
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
