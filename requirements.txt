@@ -2,3 +2,5 @@ django==3.1.6
 Pillow==8.1.0
 django_ckeditor==6.0.0
 django-utils-six==2.0
+gunicorn==20.0.4
+psycopg2-binary==2.8.6

@@ -1,4 +1,4 @@
-#!/home/marcos/Documents/apps/blog/bin/python3
+#!/home/django/blog/bin/python3.8
 # -*- coding: utf-8 -*-
 import re
 import sys
