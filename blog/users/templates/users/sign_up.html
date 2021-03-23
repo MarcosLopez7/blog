@@ -5,6 +5,24 @@
 
 {% block content %}
     <h1>Sign up</h1>
+
+    {% if form.errors %}
+        {% if form.errors.email %}
+            {% for error in form.errors.email %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if form.errors.username %}
+            {% for error in form.errors.username %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
     <form method="post" enctype="multipart/form-data" class="was-validated">
         {% csrf_token %}
         {% for field in form %}

@@ -109,7 +109,7 @@ def reset_password(request):
                     fail_silently=False
                     )
 
-            return redirect(reverse('users:notification', args=['password-resetted']))
+                return redirect(reverse('users:notification', args=['password-resetted']))
         else:
             form = ResetPasswordForm()
 
@@ -197,7 +197,7 @@ def notification_view(request, message):
         context = {
             'title': '¡Gracias por registrarte!',
             'content': """
-                Te hemos enviado un correo electrónico para confirmar tu emial, 
+                Te hemos enviado un correo electrónico para confirmar tu email, 
                 por favor, checa tu buzón de spam porque es probable que se encuentre ahí
             """,
             'footer': 'Muchas gracias',
