@@ -5,7 +5,7 @@
 <p>{{ message_content }}</p>
 
 {% if token %}
-    http://{{ domain }}{% url 'users:activate' uid token %}
+    <a href="http://{{ domain }}{% url 'users:activate' uid token %}">http://{{ domain }}{% url 'users:activate' uid token %}</a>
 {% else %}
     <p>nueva contraseña: {{ password }}</p>
     <p>
