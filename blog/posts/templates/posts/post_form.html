@@ -5,6 +5,7 @@
 
 {% block content %}
     <h1>Postea aquí</h1>
+
     <form method="post" enctype="multipart/form-data" class="was-validated">
         {% csrf_token %}
         {{ form.media }}
@@ -15,6 +16,22 @@
                     <label class="custom-file-label" for="id_image" id="imagePostLabel">{{ field.label }}</label>
                     {{ field.errors }}
                 </div>
+            {% elif field.name == 'content' %}
+                {% if form.errors.content %}
+                    {% for error in form.errors.content %}
+                        <div class="alert alert-danger mt-5" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="form-group">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>      
             {% else %}
                 <div class="form-group">
                     {{ field }}
