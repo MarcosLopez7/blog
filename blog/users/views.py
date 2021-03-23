@@ -47,6 +47,8 @@ def sign_in(request):
 
 def change_password(request):
     if request.user.is_authenticated:
+        error = None
+
         if request.method == 'POST':
             form = ChangePasswordForm(request.POST)
 
@@ -61,16 +63,19 @@ def change_password(request):
                     login(request, user)
                     messages.info(request, 'La contraseña ha sido modificada exitosamente')
                     return redirect("/")
+                else:
+                    error = 'La contraseña actual no es la correcta, por favor, verifique e intente de nuevo'
         else:
             form = ChangePasswordForm()
 
         context = {
-            'form': form
+            'form': form,
+            'error': error
         }
 
         return render(request, 'users/change_password.html', context)
     else:
-        redirect('/unauthorized')
+        return redirect('/unauthorized')
 
 def reset_password(request):
     if not request.user.is_authenticated:
@@ -106,10 +111,11 @@ def reset_password(request):
                     message,
                     settings.EMAIL_SENDER,
                     [email],
-                    fail_silently=False
+                    fail_silently=False,
+                    html_message=message
                     )
 
-            return redirect(reverse('users:notification', args=['password-resetted']))
+                return redirect(reverse('users:notification', args=['password-resetted']))
         else:
             form = ResetPasswordForm()
 
@@ -157,11 +163,12 @@ def sign_up(request):
                             'password': None
                         })
                 send_mail(
-                    'Gracias por registrate al blog', 
-                    message,
-                    settings.EMAIL_SENDER,
-                    [user.email],
-                    fail_silently=False
+                    subject='Gracias por registrate al blog', 
+                    message=message,
+                    from_email=settings.EMAIL_SENDER,
+                    recipient_list=[user.email],
+                    fail_silently=False,
+                    html_message=message,
                     )
 
                 return redirect(reverse('users:notification', args=['registration']))
@@ -177,19 +184,22 @@ def sign_up(request):
         return redirect('/')
 
 def activate(request, uidb64, token):
-    User = get_user_model()
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
+    if not request.user.is_authenticated:
+        User = get_user_model()
+        try:
+            uid = force_text(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+        if user is not None and account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.save()
 
-        return redirect(reverse('users:notification', args=['activation']))
+            return redirect(reverse('users:notification', args=['activation']))
+        else:
+            return redirect(reverse('users:notification', args=['invalid-link']))
     else:
-        return HttpResponse('¡Lo sentimos, el link es inválido!')
+        return redirect("/")
 
 def notification_view(request, message):
 
@@ -197,7 +207,7 @@ def notification_view(request, message):
         context = {
             'title': '¡Gracias por registrarte!',
             'content': """
-                Te hemos enviado un correo electrónico para confirmar tu emial, 
+                Te hemos enviado un correo electrónico para confirmar tu email, 
                 por favor, checa tu buzón de spam porque es probable que se encuentre ahí
             """,
             'footer': 'Muchas gracias',
@@ -218,6 +228,15 @@ def notification_view(request, message):
             """,
             'footer': 'Por favor inicia sesión y cambia tu contraseña lo antes posible',
             'message_type': 'success'
+        }
+    elif message == 'invalid-link':
+        context = {
+            'title': '¡Lo sentimos, el link es inválido!',
+            'content': """
+                Por favor verifica el link, puede que haya sido caducado
+            """,
+            'footer': '',
+            'message_type': 'danger'
         }
     else:
         context = {
