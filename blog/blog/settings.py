@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor'
+    'ckeditor',
+    'rest_framework'
 ]
 
 AUTHENTICATION_BACKENDS = ['blog.auth_backend.EmailBackend']

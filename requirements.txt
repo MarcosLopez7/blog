@@ -1,4 +1,7 @@
 django==3.1.6
 Pillow==8.1.0
 django_ckeditor==6.0.0
+django-filter==2.4.0
+djangorestframework==3.12.4
 django-utils-six==2.0
+markdown==3.3.4
