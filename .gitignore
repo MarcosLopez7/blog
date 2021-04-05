@@ -135,5 +135,5 @@ blog/static/img/
 
 # VS Code settings
 .vscode/
-*.json
+# *.json
 
