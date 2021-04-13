@@ -20,7 +20,7 @@ export default {
           title: "Post 1",
           image: "",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s",
         },
         {
           title: "Post 2",
@@ -34,6 +34,18 @@ export default {
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         },
+        {
+          title: "Post 4",
+          image: "",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        },
+        {
+          title: "Post 5",
+          image: "",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        },
       ],
     };
   },
@@ -43,7 +55,8 @@ export default {
 <style scoped>
 .recent-post {
   padding: 1.4rem;
-  width: 1000px;
+  width: calc(100% - 40px);
+  max-width: 1350px;
   margin: 0 auto;
 }
 
