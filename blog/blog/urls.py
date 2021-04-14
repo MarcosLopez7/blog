@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     path('posts/', include(('posts.urls', 'posts'), namespace='posts')),
     path('users/', include(('users.urls', 'users'), namespace='users')),
+    path('api/', include(('api.urls', 'api'), namespace='api')),
     path('admin/', admin.site.urls),
     path('unauthorized/', views.unauthorized, name='unauthorized'),
     path('terms-condition', views.terms_condition, name='terms-condition'),

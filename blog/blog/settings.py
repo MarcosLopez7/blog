@@ -42,6 +42,7 @@ EMAIL_SENDER = 'pylord_@tutanota.com'
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
@@ -51,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 AUTHENTICATION_BACKENDS = ['blog.auth_backend.EmailBackend']
@@ -63,8 +65,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True 
 
 ROOT_URLCONF = 'blog.urls'
 

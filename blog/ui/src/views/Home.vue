@@ -3,7 +3,7 @@
     <div class="main-image">
       <div class="image-containter">
         <div class="image-containter-item">
-          <h1>Pylord's Blog</h1>
+          <h1>Welcome to Pylord's Blog</h1>
         </div>
         <div class="image-containter-item">
           <p>

@@ -1,10 +1,13 @@
 <template>
   <nav class="nav">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/">Explore</a></li>
-      <li><a href="/">Login</a></li>
-    </ul>
+    <div class="menu-nav">
+      <ul>
+        <li class="logo"><a href="/">Pylord</a></li>
+        <li><a href="/">Explore</a></li>
+        <li><a href="/">About me</a></li>
+        <li><a href="/">Login</a></li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -24,7 +27,7 @@
 li {
   display: inline;
   float: left;
-  margin: auto 0;
+  margin: auto 3px;
 }
 
 a {
@@ -35,5 +38,15 @@ a {
 
 ul {
   margin-top: calc(var(--heght-nav) / 5);
+}
+
+.logo a {
+  margin-top: -6px;
+  font-size: 1.5rem;
+  color: var(--bg-card);
+}
+
+.menu-nav {
+  margin: 0 auto;
 }
 </style>

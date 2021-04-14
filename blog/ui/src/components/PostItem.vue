@@ -1,8 +1,14 @@
 <template>
   <div class="post-card">
-    <div class="image-card"></div>
-    <h3>{{ item.title }}</h3>
-    <p class="block-ellipsis">{{ item.description }}</p>
+    <a :href="`/post/${item.id}`">
+      <!-- <div
+      class="image-card"
+      v-bind:style="{ 'background-image': `url('${item.image}')` }"
+    ></div> -->
+      <img class="image-card" :src="item.image" />
+      <h3>{{ item.title }}</h3>
+      <p class="block-ellipsis">{{ item.content }}</p>
+    </a>
   </div>
 </template>
 
@@ -26,6 +32,7 @@ export default {
   width: 400px;
   display: inline-block;
   margin: 20px 20px;
+  border-radius: 5px;
 }
 
 .post-card h3 {
@@ -51,17 +58,16 @@ export default {
   width: calc(100% - 40px);
   height: 70px;
   margin: 0 auto;
-  line-height: 1;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .image-card {
-  background-image: url("http://localhost:8000/static/img/prueba_ShFirVO.jpg");
   background-color: white;
   width: 100%;
   height: 200px;
+  border-radius: 5px 5px 0 0;
 }
 </style>

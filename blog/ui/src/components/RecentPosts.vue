@@ -7,6 +7,8 @@
 </template>
 
 <script scoped>
+import BackendServices from "@/services/BackendServices.js";
+
 import PostItem from "@/components/PostItem.vue";
 
 export default {
@@ -15,39 +17,13 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          title: "Post 1",
-          image: "",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s text ever since the 1500s",
-        },
-        {
-          title: "Post 2",
-          image: "",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-        {
-          title: "Post 3",
-          image: "",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-        {
-          title: "Post 4",
-          image: "",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-        {
-          title: "Post 5",
-          image: "",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        },
-      ],
+      posts: [],
     };
+  },
+  created() {
+    BackendServices.getPosts().then((response) => {
+      this.posts = response.data;
+    });
   },
 };
 </script>
@@ -58,10 +34,17 @@ export default {
   width: calc(100% - 40px);
   max-width: 1350px;
   margin: 0 auto;
+  margin-top: 30px;
 }
 
 .recent-post h1 {
   text-align: center;
   font-size: 38px;
+}
+
+@media (max-width: 1374px) {
+  .recent-post {
+    max-width: 940px;
+  }
 }
 </style>
