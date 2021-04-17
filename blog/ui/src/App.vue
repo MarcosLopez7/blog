@@ -33,7 +33,10 @@ export default {
   --bg-color: #222;
   --bg-card: #208aae;
   --color-text: #fff;
-  --heght-nav: 50px;
+  --heght-nav: 65px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @font-face {
@@ -51,6 +54,10 @@ body {
 
 h1 {
   margin: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 3.3rem;
 }
 
 a {

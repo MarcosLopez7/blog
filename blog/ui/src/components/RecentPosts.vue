@@ -1,7 +1,6 @@
 <template>
+  <h1>Recents posts</h1>
   <div class="recent-post">
-    <h1>Recents posts</h1>
-
     <PostItem v-for="post in posts" :item="post" :key="post" />
   </div>
 </template>
@@ -34,17 +33,21 @@ export default {
   width: calc(100% - 40px);
   max-width: 1350px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
 }
 
-.recent-post h1 {
+h1 {
+  margin-top: 30px;
   text-align: center;
   font-size: 38px;
 }
 
-@media (max-width: 1374px) {
+/* @media (max-width: 1374px) {
   .recent-post {
     max-width: 940px;
   }
-}
+} */
 </style>
