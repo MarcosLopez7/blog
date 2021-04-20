@@ -7,7 +7,7 @@
     ></div> -->
       <img class="image-card" :src="item.image" />
       <h3>{{ item.title }}</h3>
-      <p class="block-ellipsis">{{ item.content }}</p>
+      <p class="block-ellipsis">{{ item.description }}</p>
     </a>
   </div>
 </template>

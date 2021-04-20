@@ -4,7 +4,7 @@
     <img :src="post.image" />
     <div class="post-info">
       {{ post.user.username }} <br />
-      {{ post.date }}
+      {{ dateFormatted }}
     </div>
     <div class="post-content" v-html="post.content"></div>
   </div>

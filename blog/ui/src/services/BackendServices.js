@@ -18,4 +18,7 @@ export default {
   getPost(id) {
     return apiClient.get(`/api/post/${id}`);
   },
+  getMyPosts(id) {
+    return apiClient.get(`/api/user-posts/${id}`);
+  },
 };

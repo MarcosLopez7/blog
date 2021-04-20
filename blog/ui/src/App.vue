@@ -70,4 +70,13 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  margin: 0 40px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 30px;
+}
 </style>
