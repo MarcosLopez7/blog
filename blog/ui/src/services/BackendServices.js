@@ -21,4 +21,18 @@ export default {
   getMyPosts(id) {
     return apiClient.get(`/api/user-posts/${id}`);
   },
+  addPost(data, imageFile) {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("content", data.content);
+    formData.append("image", imageFile);
+    formData.append("user", 1);
+
+    return apiClient.post(`/api/add-post`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
 };

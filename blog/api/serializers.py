@@ -10,6 +10,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username']
 
 
+class PostCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title', 'image', 'content', 'description', 'user']
+
 class PostSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
 

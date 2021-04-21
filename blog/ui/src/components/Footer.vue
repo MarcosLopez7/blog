@@ -37,4 +37,8 @@ p {
 a {
   color: #888;
 }
+
+footer {
+  margin-top: 50px;
+}
 </style>
