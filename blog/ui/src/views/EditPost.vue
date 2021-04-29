@@ -1,7 +1,7 @@
 <template>
   <div class="title">
-    <h1>Create Post</h1>
-    <PostForm :edit="false" />
+    <h1>Edit Post</h1>
+    <PostForm :edit="true" />
   </div>
 </template>
 

@@ -4,6 +4,8 @@
       <ul>
         <li class="logo"><a href="/">Pylord</a></li>
         <li><a href="/">Explore</a></li>
+        <li><router-link to="/my-posts">My Posts</router-link></li>
+        <li><router-link to="/add-post">Add Post</router-link></li>
         <li><a href="/">About me</a></li>
         <li><a href="/">Login</a></li>
       </ul>

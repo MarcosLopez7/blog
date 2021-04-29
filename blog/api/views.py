@@ -1,17 +1,19 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.response import Response
 
 from posts.models import Post
-from .serializers import PostSerializer, PostCreateSerializer
+from .serializers import PostSerializer, PostCreateSerializer, PostEditSerializer
 
-# Create your views here.
+
 class PostList(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+
 class PostCreateView(CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostCreateSerializer
+
 
 class UserPostList(ListAPIView):
     serializer_class = PostSerializer
@@ -27,3 +29,9 @@ class SinglePost(RetrieveAPIView):
     lookup_field = 'id'
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class PostEdit(UpdateAPIView):
+    lookup_field = 'id'
+    queryset = Post.objects.all()
+    serializer_class = PostEditSerializer

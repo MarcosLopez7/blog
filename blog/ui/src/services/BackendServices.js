@@ -35,4 +35,18 @@ export default {
       },
     });
   },
+  editPost(data, id, imageFile) {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("content", data.content);
+    if (imageFile !== null) {
+      formData.append("image", imageFile);
+    }
+    return apiClient.put(`/api/edit-post/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
 };
