@@ -19,6 +19,11 @@ export default {
       posts: [],
     };
   },
+  methods: {
+    isVisible(post) {
+      return post.visible;
+    },
+  },
   created() {
     BackendServices.getPosts().then((response) => {
       this.posts = response.data;

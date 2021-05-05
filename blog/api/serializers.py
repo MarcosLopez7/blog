@@ -22,10 +22,13 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'image', 'content', 'date', 'description', 'user']
+        fields = ['id', 'title', 'image', 'content', 'date', 'description', 'visible', 'user']
 
 
 class PostEditSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False)
+
     class Meta:
         model = Post
         fields = ['title', 'image', 'content', 'description']
+

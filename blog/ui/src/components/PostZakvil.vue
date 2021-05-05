@@ -1,8 +1,12 @@
 <template>
   <div class="inline-post">
-    <img :src="'http://127.0.0.1:8000' + post.image" />
+    <a :href="`/post/${post.id}`">
+      <img :src="'http://127.0.0.1:8000' + post.image" />
+    </a>
     <div class="post-name">
-      <h3>{{ post.title }}</h3>
+      <a :href="`/post/${post.id}`">
+        <h3>{{ post.title }}</h3>
+      </a>
     </div>
     <div class="post-buttons">
       <a :href="`/edit-post/${post.id}`">

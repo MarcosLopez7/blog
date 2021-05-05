@@ -33,7 +33,7 @@
     </div>
     <div class="field-area file-selector">
       <input id="postImageFile" type="file" @change="onFileChange($event)" />
-      <label for="postImageFile">Main image: Choose File</label>
+      <label for="postImageFile">Main image: {{ fileName }}</label>
     </div>
     <div class="button">
       <button class="btn" type="button" @click="submit()">Submit</button>
@@ -60,6 +60,7 @@ export default {
       description: "",
       content: "",
       image: null,
+      fileName: "Choose File",
     };
   },
   computed: {
@@ -87,7 +88,11 @@ export default {
         BackendServices.editPost(data, this.$route.params.id, this.image)
           .then((response) => {
             console.log(response.data);
-            this.$router.push(`http://localhost:8080/post/${response.data.id}`);
+            this.$router.push({
+              name: "Post",
+              params: { id: this.$route.params.id },
+            });
+            // this.$router.push(`${this.$route.params.id}`);
           })
           .catch((response) => {
             console.err(response.error.data);
@@ -95,9 +100,10 @@ export default {
       }
     },
     onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
+      const files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       this.image = files[0];
+      this.fileName = this.image.name;
     },
   },
   created() {
@@ -107,6 +113,14 @@ export default {
           this.title = response.data.title;
           this.description = response.data.description;
           this.content = response.data.content;
+          // BackendServices.getImage(response.data.image)
+          //   .then((response) => response.blob())
+          //   .then((blobResponse) => {
+          //     const blob = blobResponse;
+          //     blob.lastModifiedDate = new Date();
+          //     blob.name = "archivo";
+          //     this.image = blob;
+          //   });
         })
         .catch((response) => console.err(response.error));
     }

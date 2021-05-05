@@ -49,4 +49,11 @@ export default {
       },
     });
   },
+  getImage(url) {
+    return apiClient.get(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  },
 };

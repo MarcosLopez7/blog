@@ -11,6 +11,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='static/img/')
     description = models.TextField()
     content = models.TextField()
+    visible = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
