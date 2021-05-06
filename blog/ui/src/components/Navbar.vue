@@ -7,13 +7,21 @@
         <li><router-link to="/my-posts">My Posts</router-link></li>
         <li><router-link to="/add-post">Add Post</router-link></li>
         <li><a href="/">About me</a></li>
-        <li><a href="/">Login</a></li>
+        <li @click="showLogin()">Login</li>
       </ul>
     </div>
   </nav>
 </template>
 
-<script></script>
+<script>
+export default {
+  methods: {
+    showLogin() {
+      this.$store.dispatch("changeVisibility");
+    },
+  },
+};
+</script>
 
 <style scoped>
 /* :root {

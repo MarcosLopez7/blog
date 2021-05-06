@@ -6,9 +6,11 @@
   </div> -->
   <router-view />
   <Footer />
+  <Login />
 </template>
 
 <script>
+import Login from "@/components/Login.vue";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -16,8 +18,9 @@ export default {
   components: {
     Navbar,
     Footer,
+    Login,
   },
-  mounted() {
+  Loginounted() {
     const recaptchaScript = document.createElement("script");
     recaptchaScript.setAttribute(
       "src",
