@@ -49,11 +49,9 @@ export default {
       },
     });
   },
-  getImage(url) {
-    return apiClient.get(url, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+  editVisiblePost(visibleValue, id) {
+    const formData = new FormData();
+    formData.append("visible", visibleValue);
+    return apiClient.put(`/api/edit-visible-post/${id}`, formData);
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card" v-if="post.visible">
+  <div class="post-card" v-if="item.visible">
     <a :href="`/post/${item.id}`">
       <!-- <div
       class="image-card"

@@ -32,3 +32,8 @@ class PostEditSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['title', 'image', 'content', 'description']
 
+
+class PostVisibleEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['visible']

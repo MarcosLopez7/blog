@@ -7,5 +7,6 @@ urlpatterns = [
     path('add-post', views.PostCreateView.as_view(), name='add-post'),
     path('post/<int:id>', views.SinglePost.as_view(), name='get'),
     path('edit-post/<int:id>', views.PostEdit.as_view(), name='edit-post'),
-    path('user-posts/<int:user_id>', views.UserPostList.as_view(), name='user-posts')
+    path('user-posts/<int:user_id>', views.UserPostList.as_view(), name='user-posts'),
+    path('edit-visible-post/<int:id>', views.PostEditVisible.as_view(), name='edit-visible-post')
 ]
