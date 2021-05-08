@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span> </span>
-      <h2>Login</h2>
+      <h2>Sign Up</h2>
       <span> </span>
       <!-- <span class="close" @click="hideModal()">&times;</span> -->
     </div>

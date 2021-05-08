@@ -1,24 +1,20 @@
 <template>
   <Navbar />
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
   <router-view />
   <Footer />
-  <Login />
+  <ModalUser />
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import ModalUser from "@/components/ModalUser.vue";
 
 export default {
   components: {
     Navbar,
     Footer,
-    Login,
+    ModalUser,
   },
   Loginounted() {
     const recaptchaScript = document.createElement("script");

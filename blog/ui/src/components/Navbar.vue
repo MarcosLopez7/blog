@@ -8,6 +8,7 @@
         <li><router-link to="/add-post">Add Post</router-link></li>
         <li><a href="/">About me</a></li>
         <li @click="showLogin()">Login</li>
+        <li @click="showSignUp()">Sign Up</li>
       </ul>
     </div>
   </nav>
@@ -17,7 +18,10 @@
 export default {
   methods: {
     showLogin() {
-      this.$store.dispatch("changeVisibility");
+      this.$store.dispatch("changeLoginVisibility");
+    },
+    showSignUp() {
+      this.$store.dispatch("changeSignUpVisibility");
     },
   },
 };
