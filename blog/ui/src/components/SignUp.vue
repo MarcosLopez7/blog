@@ -1,61 +1,84 @@
 <template>
-  <div class="modal-content">
+  <!-- <div class="modal-content">
     <div class="modal-header">
       <span> </span>
       <h2>Sign Up</h2>
       <span> </span>
-      <!-- <span class="close" @click="hideModal()">&times;</span> -->
-    </div>
-    <div class="modal-body">
-      <form class="form">
-        <div class="field-area">
-          <input type="text" class="input-form" placeholder="Username" />
-        </div>
-        <div class="field-area">
-          <input type="email" class="input-form" placeholder="Email" />
-        </div>
-        <div class="field-area">
-          <input type="password" class="input-form" placeholder="Password" />
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn">Submit</button>
-    </div>
+      <span class="close" @click="hideModal()">&times;</span>
+    </div> -->
+  <div class="modal-body">
+    <form class="form">
+      <div class="field-area">
+        <input
+          type="text"
+          class="input-form"
+          v-model="username"
+          placeholder="Username"
+          required
+        />
+      </div>
+      <div class="field-area">
+        <input
+          type="email"
+          class="input-form"
+          v-model="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div class="field-area">
+        <input
+          type="password"
+          class="input-form"
+          v-model="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+    </form>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" @click="submit()">Submit</button>
+  </div>
+  <!-- </div> -->
 </template>
 
 <script>
-export default {};
+// import BackendServices from "@/services/BackendServices.js";
+
+export default {
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    submit() {
+      this.$store.dispatch("setIsUserCreated", true);
+      // const data = {
+      //   username: this.username,
+      //   email: this.email,
+      //   password: this.password,
+      // };
+      // BackendServices.createUser(data)
+      //   .then((response) => {
+      //     console.log(response.data);
+      //     this.$store.dispatch("setIsUserCreated", true);
+      //     this.username = "";
+      //     this.email = "";
+      //     this.password = "";
+      //   })
+      //   .catch((error) => {
+      //     console.error(error.response);
+      //   });
+    },
+  },
+};
 </script>
 
 <style>
-.modal-content {
-  background-color: var(--bg-card);
-  margin: auto;
-  border: 1px solid var(--bg-card);
-  width: 500px;
-  border-radius: 5px;
-}
-
-.modal-header {
-  font-size: 1.5rem;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-}
-
-/* .modal-body {
-  padding: 1rem 1rem;
-} */
-
-.modal-header h2 {
-  margin: 0;
-  text-align: center;
-}
-
 .close {
   flex-flow: row;
 }

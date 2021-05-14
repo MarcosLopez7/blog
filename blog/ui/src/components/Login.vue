@@ -1,28 +1,28 @@
 <template>
-  <div class="modal-content">
-    <div class="modal-header">
+  <!-- <div class="modal-content"> -->
+  <!-- <div class="modal-header">
       <span> </span>
       <h2>Login</h2>
       <span> </span>
-      <!-- <span class="close" @click="hideModal()">&times;</span> -->
-    </div>
-    <div class="modal-body">
-      <form class="form">
-        <div class="field-area">
-          <input type="email" class="input-form" placeholder="Email" />
-        </div>
-        <div class="field-area">
-          <input type="password" class="input-form" placeholder="Password" />
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn">Submit</button>
-      <div class="forgot-password">
-        <a href="#">Forgot Password?</a>
+      <span class="close" @click="hideModal()">&times;</span>
+    </div> -->
+  <div class="modal-body">
+    <form class="form">
+      <div class="field-area">
+        <input type="email" class="input-form" placeholder="Email" />
       </div>
+      <div class="field-area">
+        <input type="password" class="input-form" placeholder="Password" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn">Submit</button>
+    <div class="forgot-password">
+      <a href="#">Forgot Password?</a>
     </div>
   </div>
+  <!-- </div<div class="modal-content">> -->
 </template>
 
 <script>
@@ -30,32 +30,6 @@ export default {};
 </script>
 
 <style>
-.modal-content {
-  background-color: var(--bg-card);
-  margin: auto;
-  border: 1px solid var(--bg-card);
-  width: 500px;
-  border-radius: 5px;
-}
-
-.modal-header {
-  font-size: 1.5rem;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-}
-
-/* .modal-body {
-  padding: 1rem 1rem;
-} */
-
-.modal-header h2 {
-  margin: 0;
-  text-align: center;
-}
-
 .close {
   flex-flow: row;
 }

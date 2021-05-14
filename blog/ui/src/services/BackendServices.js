@@ -54,4 +54,11 @@ export default {
     formData.append("visible", visibleValue);
     return apiClient.put(`/api/edit-visible-post/${id}`, formData);
   },
+  createUser(data) {
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    return apiClient.post(`/api/sign-up`, formData);
+  },
 };

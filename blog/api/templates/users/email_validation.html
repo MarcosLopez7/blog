@@ -1,0 +1,18 @@
+{% autoescape off %}
+
+<h1>{{ title }}</h1>
+
+<p>{{ message_content }}</p>
+
+{% if token %}
+    <a href="https://{{ domain }}{% url 'users:activate' uid token %}">https://{{ domain }}{% url 'users:activate' uid token %}</a>
+{% else %}
+    <p>nueva contraseña: {{ password }}</p>
+    <p>
+        Te recomendamos que cuando inicies sesión puedas cambiar inmediatamente
+        la contraseña por fines de seguridad
+    </p>
+{% endif %}
+
+<p>Gracias</p>
+{% endautoescape %}

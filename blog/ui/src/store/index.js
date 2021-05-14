@@ -4,6 +4,7 @@ export default createStore({
   state: {
     loginVisible: false,
     signUpVisible: false,
+    isUserCreated: false,
   },
   mutations: {
     SET_LOGIN_VISIBILITY(state, visibleValue) {
@@ -12,6 +13,9 @@ export default createStore({
     SET_SIGN_UP_VISIBILITY(state, visibleValue) {
       state.signUpVisible = visibleValue;
     },
+    SET_IS_USER_CREATED(state, value) {
+      state.isUserCreated = value;
+    },
   },
   actions: {
     changeLoginVisibility({ commit, state }) {
@@ -19,6 +23,9 @@ export default createStore({
     },
     changeSignUpVisibility({ commit, state }) {
       commit("SET_SIGN_UP_VISIBILITY", !state.signUpVisible);
+    },
+    setIsUserCreated({ commit }, value) {
+      commit("SET_IS_USER_CREATED", value);
     },
   },
   modules: {},

@@ -37,3 +37,13 @@ class PostVisibleEditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['visible']
+
+
+class CreateUserSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def create(self, validated_data):
+
+        return User.objects.create(**validated_data)
