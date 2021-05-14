@@ -1,6 +1,6 @@
 <template>
-  <Navbar />
-  <router-view />
+  <header><Navbar /></header>
+  <section><router-view /></section>
   <Footer />
   <ModalUser />
 </template>

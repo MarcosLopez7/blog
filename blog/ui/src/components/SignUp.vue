@@ -9,6 +9,9 @@
     <div class="modal-body">
       <form class="form">
         <div class="field-area">
+          <input type="text" class="input-form" placeholder="Username" />
+        </div>
+        <div class="field-area">
           <input type="email" class="input-form" placeholder="Email" />
         </div>
         <div class="field-area">
@@ -18,9 +21,6 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn">Submit</button>
-      <div class="forgot-password">
-        <a href="#">Forgot Password?</a>
-      </div>
     </div>
   </div>
 </template>
