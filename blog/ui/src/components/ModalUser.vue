@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     showModal() {
-      return this.$store.state.loginVisible || this.$store.state.signUpVisible;
+      return this.$store.state.loginVisible || this.$store.state.isUserCreated;
     },
     showingSignUp() {
       return !this.showingLogin;
@@ -59,10 +59,10 @@ export default {
   methods: {
     hideModal(event) {
       if (event.target == document.getElementById("loginModal")) {
-        if (this.$store.state.loginVisible) {
+        if (this.$store.state.isUserCreated) {
+          this.$store.dispatch("setIsUserCreated", false);
+        } else if (this.$store.state.loginVisible) {
           this.$store.dispatch("changeLoginVisibility");
-        } else if (this.$store.state.signUpVisible) {
-          this.$store.dispatch("changeSignUpVisibility");
         }
       }
     },

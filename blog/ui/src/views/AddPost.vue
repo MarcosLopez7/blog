@@ -1,8 +1,8 @@
 <template>
-  <div class="title">
+  <article class="title">
     <h1>Create Post</h1>
     <PostForm :edit="false" />
-  </div>
+  </article>
 </template>
 
 <script>

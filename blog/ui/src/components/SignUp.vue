@@ -1,11 +1,4 @@
 <template>
-  <!-- <div class="modal-content">
-    <div class="modal-header">
-      <span> </span>
-      <h2>Sign Up</h2>
-      <span> </span>
-      <span class="close" @click="hideModal()">&times;</span>
-    </div> -->
   <div class="modal-body">
     <form class="form">
       <div class="field-area">
@@ -44,7 +37,7 @@
 </template>
 
 <script>
-// import BackendServices from "@/services/BackendServices.js";
+import BackendServices from "@/services/BackendServices.js";
 
 export default {
   data() {
@@ -56,23 +49,23 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.dispatch("setIsUserCreated", true);
-      // const data = {
-      //   username: this.username,
-      //   email: this.email,
-      //   password: this.password,
-      // };
-      // BackendServices.createUser(data)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.$store.dispatch("setIsUserCreated", true);
-      //     this.username = "";
-      //     this.email = "";
-      //     this.password = "";
-      //   })
-      //   .catch((error) => {
-      //     console.error(error.response);
-      //   });
+      const data = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      };
+      BackendServices.createUser(data)
+        .then((response) => {
+          console.log(response.data);
+          this.$store.dispatch("setIsUserCreated", true);
+          this.$store.dispatch("changeLoginVisibility");
+          this.username = "";
+          this.email = "";
+          this.password = "";
+        })
+        .catch((error) => {
+          console.error(error.response);
+        });
     },
   },
 };

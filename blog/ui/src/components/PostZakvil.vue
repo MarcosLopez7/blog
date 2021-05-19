@@ -1,11 +1,14 @@
 <template>
-  <div class="inline-post">
+  <article class="inline-post">
     <a :href="`/post/${post.id}`">
       <div class="image-visible-overlay">
-        <img
-          :src="'http://127.0.0.1:8000' + post.image"
-          :class="{ imgInvisible: !post.visible }"
-        />
+        <figure>
+          <img
+            :src="'http://127.0.0.1:8000' + post.image"
+            :class="{ imgInvisible: !post.visible }"
+            :alt="post.title"
+          />
+        </figure>
         <i v-if="!post.visible" class="fa fa-eye-slash" aria-hidden="true"></i>
       </div>
     </a>
@@ -26,7 +29,7 @@
         <i v-if="post.visible" class="fa fa-eye-slash" aria-hidden="true"></i>
       </button>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

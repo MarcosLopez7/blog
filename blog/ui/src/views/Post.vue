@@ -1,13 +1,15 @@
 <template>
-  <div class="post-container">
+  <article class="post-container">
     <h1>{{ post.title }}</h1>
-    <img :src="post.image" />
+    <figure>
+      <img :src="post.image" :alt="post.title" />
+    </figure>
     <div class="post-info">
-      {{ post.user.username }} <br />
+      {{ post.user.username }}
       {{ dateFormatted }}
     </div>
     <div class="post-content" v-html="post.content"></div>
-  </div>
+  </article>
 </template>
 
 <script>

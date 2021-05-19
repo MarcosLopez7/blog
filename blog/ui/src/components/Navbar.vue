@@ -7,8 +7,7 @@
         <li><router-link to="/my-posts">My Posts</router-link></li>
         <li><router-link to="/add-post">Add Post</router-link></li>
         <li><a href="/">About me</a></li>
-        <li @click="showLogin()">Login</li>
-        <li @click="showSignUp()">Sign Up</li>
+        <li @click="showLogin()"><span>Login</span></li>
       </ul>
     </div>
   </nav>
@@ -44,6 +43,13 @@ li {
 }
 
 a {
+  display: block;
+  padding: 8px;
+  font-weight: 550;
+  font-size: 1.5rem;
+}
+
+span {
   display: block;
   padding: 8px;
   font-weight: 550;

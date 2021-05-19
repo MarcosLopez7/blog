@@ -1,15 +1,17 @@
 <template>
-  <div class="post-card" v-if="item.visible">
+  <article class="post-card" v-if="item.visible">
     <a :href="`/post/${item.id}`">
       <!-- <div
       class="image-card"
       v-bind:style="{ 'background-image': `url('${item.image}')` }"
     ></div> -->
-      <img class="image-card" :src="item.image" />
+      <figure>
+        <img class="image-card" :src="item.image" :alt="item.title" />
+      </figure>
       <h3>{{ item.title }}</h3>
       <p class="block-ellipsis">{{ item.description }}</p>
     </a>
-  </div>
+  </article>
 </template>
 
 <script>

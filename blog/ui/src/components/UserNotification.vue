@@ -1,10 +1,19 @@
 <template>
   <div class="modal-body">
     <h4>La cuenta ha sido creada exitosamente</h4>
-    <p>verifica tu cuenta en tu correó eletronico</p>
+    <p>
+      Te hemos mandado un correo electrónico para que lo verifiques, sino está
+      en tu buzón de entrada verifica en la carpeta de spam
+    </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn" @click="submit()">OK</button>
+    <button
+      type="button"
+      class="btn"
+      @click="$store.dispatch('setIsUserCreated', false)"
+    >
+      OK
+    </button>
   </div>
 </template>
 
