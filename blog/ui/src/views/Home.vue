@@ -7,15 +7,13 @@
         </div>
         <div class="image-containter-item">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
+            HI, my name is Marcos López, in social network I’m as Pylord. I’m
+            software developer with 5 years of professional experience, I love
+            develop things that can solve problems or be helpful for people or
+            companies. I have been working in Kantar as Web developer since 3
+            years ago, we develop web applications oriented to data science for
+            satisfy Kantar operations requirements and delivery products to our
+            clients.
           </p>
         </div>
       </div>
@@ -59,7 +57,8 @@ p {
   margin-top: 1rem;
   text-align: justify;
   text-justify: inter-word;
-  line-height: 1.5;
+  line-height: 1.8;
+  font-size: 1.25rem;
 }
 
 .image-containter h1 {

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.core.mail import send_mail
@@ -96,3 +97,31 @@ class CreateUserAPIView(APIView):
             )
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+"""
+TODO Activar usuario por medio de  
+"""
+
+class ActivateUser(APIView):
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            User = get_user_model()
+            uidb64 = kwargs.get('uidb64', '')
+            token = kwargs.get('token', '')
+            try:
+                uid = force_text(urlsafe_base64_decode(uidb64))
+                user = User.objects.get(pk=uid)
+            except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+                user = None
+            if user is not None and account_activation_token.check_token(user, token):
+                user.is_active = True
+                user.save()
+
+                return redirect(reverse('users:notification', args=['activation']))
+            else:
+                return redirect(reverse('users:notification', args=['invalid-link']))
+        else:
+            return redirect("/")

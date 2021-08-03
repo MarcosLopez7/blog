@@ -3,10 +3,9 @@
     <div class="menu-nav">
       <ul>
         <li class="logo"><a href="/">Pylord</a></li>
-        <li><a href="/">Explore</a></li>
-        <li><router-link to="/my-posts">My Posts</router-link></li>
-        <li><router-link to="/add-post">Add Post</router-link></li>
-        <li><a href="/">About me</a></li>
+        <li><a href="/about-me">About me</a></li>
+        <li><a href="/">About this site</a></li>
+        <li><a href="/">Contact</a></li>
         <li @click="showLogin()"><span>Login</span></li>
       </ul>
     </div>

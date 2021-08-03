@@ -4,6 +4,7 @@ import Post from "@/views/Post.vue";
 import MyPosts from "@/views/MyPosts.vue";
 import AddPost from "@/views/AddPost.vue";
 import EditPost from "@/views/EditPost.vue";
+import AboutMe from "@/views/AboutMe.vue";
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
     path: "/add-post",
     name: "AddPost",
     component: AddPost,
+  },
+  {
+    path: "/about-me",
+    name: "AboutMe",
+    component: AboutMe,
   },
   {
     path: "/edit-post/:id",
