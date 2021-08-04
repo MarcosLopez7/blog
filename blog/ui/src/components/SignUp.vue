@@ -45,10 +45,16 @@ export default {
       username: "",
       email: "",
       password: "",
+      errors: [],
     };
   },
   methods: {
     submit() {
+      this.errors = [];
+      if (!this.validate()) {
+        return;
+      }
+
       const data = {
         username: this.username,
         email: this.email,
@@ -66,6 +72,58 @@ export default {
         .catch((error) => {
           console.error(error.response);
         });
+    },
+    validate() {
+      const validatePattern = /^[a-zA-Z0-9_@.+-]+$/;
+      const validateIfNotNumPattern = /^[0-9]+$/;
+
+      if (!this.username) {
+        this.errors.push("The username is required");
+      }
+
+      if (!this.email) {
+        this.errors.push("The email is required");
+      }
+
+      if (!this.password) {
+        this.errors.push("The password is required");
+      }
+
+      if (this.username.length > 150) {
+        this.errors.push("The username should be 150 characters or fewer");
+      }
+
+      if (!validatePattern.test(this.username)) {
+        this.errors.push(
+          "Letters, digits and @/./+/-/_ are the only allowed characters."
+        );
+      }
+
+      if (this.email.length > 150) {
+        this.errors.push("The email should be 150 characters or fewer");
+      }
+
+      if (!this.validEmail(this.email)) {
+        this.errors.push("Please ionsert a valid email");
+      }
+
+      if (this.password.length < 8) {
+        this.errors.push("The password should be 8 characters or more");
+      }
+
+      if (validateIfNotNumPattern.test(this.password)) {
+        this.errors.push("The password should not be only numbers");
+      }
+
+      if (this.errors.length === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    validEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     },
   },
 };

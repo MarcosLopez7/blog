@@ -6,7 +6,7 @@
         <li><a href="/about-me">About me</a></li>
         <li><a href="/">About this site</a></li>
         <li><a href="/">Contact</a></li>
-        <li @click="showLogin()"><span>Login</span></li>
+        <li class="link" @click="showLogin()"><span>Login</span></li>
       </ul>
     </div>
   </nav>
@@ -68,5 +68,9 @@ ul {
 
 .menu-nav {
   margin: 0 auto;
+}
+
+.link {
+  cursor: pointer;
 }
 </style>
